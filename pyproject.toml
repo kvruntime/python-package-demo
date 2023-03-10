@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=65.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ingineerpackage"
+version = "1.0.0"
+authors = [{ name = "kvruntime", email = "kvruntime@gmail.com" }]
+description = "Description is here"
+
+readme = "README.md"
+
+requires-python = ">=3.9"
+
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+
+license = { file = "LICENCE" }
+
+
+dependencies = ["requests", "typer"]
+
+
+[project.urls]
+"Homepage" = "https://github.com/pypa/sampleproject"
+"Bug Tracker" = "https://github.com/pypa/sampleproject/issues"
+
+[project.scripts]
+ingineer-script = "ingineerpackage.functions:running_script"

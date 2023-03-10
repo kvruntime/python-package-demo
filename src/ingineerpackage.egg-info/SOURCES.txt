@@ -1,0 +1,13 @@
+LICENCE
+README.md
+pyproject.toml
+src/ingineerpackage/__init__.py
+src/ingineerpackage/customtypes.py
+src/ingineerpackage/executor.py
+src/ingineerpackage/functions.py
+src/ingineerpackage.egg-info/PKG-INFO
+src/ingineerpackage.egg-info/SOURCES.txt
+src/ingineerpackage.egg-info/dependency_links.txt
+src/ingineerpackage.egg-info/entry_points.txt
+src/ingineerpackage.egg-info/requires.txt
+src/ingineerpackage.egg-info/top_level.txt

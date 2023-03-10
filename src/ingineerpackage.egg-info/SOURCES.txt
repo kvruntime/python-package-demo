@@ -1,6 +1,8 @@
+.gitignore
 LICENCE
 README.md
 pyproject.toml
+.vscode/settings.json
 src/ingineerpackage/__init__.py
 src/ingineerpackage/customtypes.py
 src/ingineerpackage/executor.py
@@ -11,3 +13,6 @@ src/ingineerpackage.egg-info/dependency_links.txt
 src/ingineerpackage.egg-info/entry_points.txt
 src/ingineerpackage.egg-info/requires.txt
 src/ingineerpackage.egg-info/top_level.txt
+src/ingineerpackage/__pycache__/__init__.cpython-310.pyc
+tests/context.py
+tests/test_defualt.py

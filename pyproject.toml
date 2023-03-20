@@ -30,3 +30,13 @@ dependencies = ["requests", "typer"]
 
 [project.scripts]
 ingineer-script = "ingineerpackage.functions:running_script"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+namespaces = true
+where = ["src"]
+
+[tool.setuptools.package-data]
+resources = ["*"]

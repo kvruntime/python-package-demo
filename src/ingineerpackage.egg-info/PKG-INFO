@@ -31,6 +31,14 @@ Requires-Python: >=3.9
 Description-Content-Type: text/markdown
 License-File: LICENCE
 
-# ingineerpackage
+# Ingineerpackage
+
+## Description
 
 here is a description...
+
+## How Build
+
+```sh
+python -m build
+```

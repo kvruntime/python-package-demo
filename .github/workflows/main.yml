@@ -24,14 +24,19 @@ jobs:
           pip install -r requirements.txt
           pytest --version
       - name: run test
-        run: pytest --junit-xml=reports.xml .
-      - name: Test Report
-        uses: dorny/test-reporter@v1
-        if: success() || failure()    # run this step even if previous step failed
+        env:
+          REPORT_OUTPUT: reports.md
+        run: |
+          echo "REPORT_FILE=${REPORT_OUTPUT}" >> "$GITHUB_ENV"
+          pytest -v --md-report --md-report-flavor gfm --md-report-exclude-outcomes passed skipped xpassed --md-report-output "$REPORT_OUTPUT"
+
+      - name: Render the report to the PR when tests fail
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: failure()
         with:
-          name: JEST Tests            # Name of the check run which will be created
-          path: reports.xml    # Path to test results
-          reporter: jest-junit        # Format of test results
+          header: test-report
+          recreate: true
+          path: ${{ env.REPORT_FILE }}
   build:
     needs: [testing]
     runs-on: ubuntu-22.04

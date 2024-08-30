@@ -6,3 +6,4 @@ pdm
 pdm-pep517
 requests
 typer
+pytest-md-report

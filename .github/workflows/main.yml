@@ -17,9 +17,10 @@ jobs:
           echo "Second line."
       - name: run test
         run: pytest --junit-xml=path ./reports.xml
-  # build:
-  #   runs-on: ubuntu-22.04
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - name: run test
-  #       run: pytest --junit-xml=path ./reports.xml
+  build:
+    needs: [testing]
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: run test
+        run: pytest --junit-xml=path ./reports.xml

@@ -1,6 +1,8 @@
-[build-system]
-requires = ["setuptools>=65.0", "setuptools-scm"]
-build-backend = "setuptools.build_meta"
+
+
+[build-system] 
+requires = ["pdm-backend"] 
+build-backend = "pdm.backend"
 
 [project]
 name = "ingineerpackage"
@@ -38,5 +40,8 @@ include-package-data = true
 namespaces = true
 where = ["src"]
 
-[tool.setuptools.package-data]
-resources = ["*"]
+# [tool.setuptools.package-data]
+# resources = ["*"]
+
+[tool.pdm.version]
+source = "scm"

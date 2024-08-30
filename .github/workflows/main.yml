@@ -10,17 +10,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: greet-people
-        run: echo Hello People
-      - name: greet-multiline
         run: |
-          echo "First line",
-          echo "Second line."
+          echo Hello People
+          echo Hello People
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Install dependencies
+        run: |
+          python --version
+          pip install -r requirements.txt
+          pytest --version
       - name: run test
         run: pytest --junit-xml=path ./reports.xml
   build:
     needs: [testing]
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
       - name: run test
-        run: pytest --junit-xml=path ./reports.xml
+        run: |
+          python -m pdm build
+          ls -Rlh *

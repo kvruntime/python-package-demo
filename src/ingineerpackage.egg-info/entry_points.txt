@@ -1,2 +1,0 @@
-[console_scripts]
-ingineer-script = ingineerpackage.functions:running_script

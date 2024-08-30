@@ -5,7 +5,7 @@ requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
 [project]
-name = "ingineerpackage"
+name = "demopack"
 version = "1.0.0"
 authors = [{ name = "kvruntime", email = "kvruntime@gmail.com" }]
 description = "Description is here"

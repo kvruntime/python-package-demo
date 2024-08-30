@@ -27,16 +27,43 @@ jobs:
         env:
           REPORT_OUTPUT: reports.md
         run: |
-          echo "REPORT_FILE=${REPORT_OUTPUT}" >> "$GITHUB_ENV"
-          pytest -v --md-report --md-report-flavor gfm --md-report-exclude-outcomes passed skipped xpassed --md-report-output "$REPORT_OUTPUT"
-
-      - name: Render the report to the PR when tests fail
-        uses: marocchino/sticky-pull-request-comment@v2
-        if: failure()
+          pytest --junit-xml=reports.xml
+      - name: Surface failing tests
+        if: always()
+        uses: pmeier/pytest-results-action@main
         with:
-          header: test-report
-          recreate: true
-          path: ${{ env.REPORT_FILE }}
+          # A list of JUnit XML files, directories containing the former, and wildcard
+          # patterns to process.
+          # See @actions/glob for supported patterns.
+          path: reports.xml
+
+          # (Optional) Add a summary of the results at the top of the report
+          summary: true
+
+          # (Optional) Select which results should be included in the report.
+          # Follows the same syntax as `pytest -r`
+          display-options: fEX
+
+          # (Optional) Fail the workflow if no JUnit XML was found.
+          fail-on-empty: true
+
+          # (Optional) Title of the test results section in the workflow summary
+          title: Test results
+
+      # - name: run test
+      #   env:
+      #     REPORT_OUTPUT: reports.md
+      #   run: |
+      #     echo "REPORT_FILE=${REPORT_OUTPUT}" >> "$GITHUB_ENV"
+      #     pytest -v --md-report --md-report-flavor gfm --md-report-exclude-outcomes passed skipped xpassed --md-report-output "$REPORT_OUTPUT"
+
+      # - name: Render the report to the PR when tests fail
+      #   uses: marocchino/sticky-pull-request-comment@v2
+      #   if: failure()
+      #   with:
+      #     header: test-report
+      #     recreate: true
+      #     path: ${{ env.REPORT_FILE }}
   build:
     needs: [testing]
     runs-on: ubuntu-22.04
@@ -49,5 +76,6 @@ jobs:
           python-version: "3.10"
       - name: run test
         run: |
+          pip install -r requirements.txt
           python -m pdm build
           ls -Rlh *

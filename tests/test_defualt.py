@@ -1,4 +1,4 @@
-import tests._context as _context
+import _context
 
 _context.__file__
 from demopack import functions

@@ -1,0 +1,15 @@
+name: Demo
+
+on: [push]
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: greet-people
+        run: echo Hello People
+      - name: greet-multiline
+        run: |
+          echo "First line",
+          echo "Second line."

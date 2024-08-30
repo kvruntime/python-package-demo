@@ -4,12 +4,22 @@ on: [push]
 
 jobs:
   testing:
-    runs-on: ubuntu-latest
+    name: testing-job
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: greet-people
         run: echo Hello People
       - name: greet-multiline
         run: |
           echo "First line",
           echo "Second line."
+      - name: run test
+        run: pytest --junit-xml=path ./reports.xml
+  # build:
+  #   runs-on: ubuntu-22.04
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: run test
+  #       run: pytest --junit-xml=path ./reports.xml

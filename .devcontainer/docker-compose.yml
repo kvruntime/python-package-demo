@@ -1,0 +1,6 @@
+services:
+  packaging:
+    image: python:3.10-bullseye
+    command: sleep infinity
+    volumes:
+      - ../:/workspaces/demopack

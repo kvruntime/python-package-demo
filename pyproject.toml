@@ -1,9 +1,11 @@
-[build-system]
-requires = ["setuptools>=65.0", "setuptools-scm"]
-build-backend = "setuptools.build_meta"
+
+
+[build-system] 
+requires = ["pdm-backend"] 
+build-backend = "pdm.backend"
 
 [project]
-name = "ingineerpackage"
+name = "demopack"
 version = "1.0.0"
 authors = [{ name = "kvruntime", email = "kvruntime@gmail.com" }]
 description = "Description is here"
@@ -38,5 +40,13 @@ include-package-data = true
 namespaces = true
 where = ["src"]
 
-[tool.setuptools.package-data]
-resources = ["*"]
+# [tool.setuptools.package-data]
+# resources = ["*"]
+
+[tool.pdm.version]
+source = "scm"
+
+[tool.pytest.ini_options]
+md_report = true
+md_report_verbose = 0
+md_report_color = "auto"
